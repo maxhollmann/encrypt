@@ -1,5 +1,3 @@
-# openpgp.initWorker("/assets/openpgp.worker.js")
-
 $ ->
   getKey = () ->
     key = $(".public-key").data('key')

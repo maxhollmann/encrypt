@@ -40,8 +40,6 @@ if (!Function.prototype.bind) {
   };
 }
 
-importScripts('openpgp.js');
-
 var MIN_SIZE_RANDOM_BUFFER = 40000;
 var MAX_SIZE_RANDOM_BUFFER = 60000;
 
