@@ -1,0 +1,19 @@
+development: &development
+  adapter: postgresql
+  encoding: utf8
+  database: encrypt_development
+  username: postgres
+  password: XXX
+  host: localhost
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *development
+  #database: encrypt_test_<%= ENV['TEST_ENV_NUMBER'] %>
+  database: encrypt_test
+
+production: &production
+  <<: *development
+  database: encrypt_production
