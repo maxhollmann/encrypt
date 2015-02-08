@@ -52,7 +52,10 @@ gem 'tzinfo-data'
 gem 'validates_formatting_of'
 gem 'slim-rails'
 
+gem 'rails_12factor', group: :production
+
 group :development do
   gem 'better_errors'
   gem 'pry-rails'
+
 end
