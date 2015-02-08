@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
-  get 'pages/index'
-
   devise_for :users, skip: [:sessions, :registrations]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  root 'pages#index'
+  root to: "keys#index"
+  resources :keys, as: :public_keys
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -56,13 +54,13 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  
+
   #->Prelang (user_login:devise/stylized_paths)
   devise_scope :user do
     get    "login"   => "devise/sessions#new",         as: :new_user_session
     post   "login"   => "devise/sessions#create",      as: :user_session
     delete "signout" => "devise/sessions#destroy",     as: :destroy_user_session
-    
+
     get    "signup"  => "devise/registrations#new",    as: :new_user_registration
     post   "signup"  => "devise/registrations#create", as: :user_registration
     put    "signup"  => "devise/registrations#update", as: :update_user_registration

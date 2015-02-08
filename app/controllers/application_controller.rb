@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  #->Prelang (user_login:devise)
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up)        { |u| u.permit(:username, :email, :password, :password_confirmation, :remember_me) }
     devise_parameter_sanitizer.for(:sign_in)        { |u| u.permit(:login, :username, :email, :password, :remember_me) }
@@ -16,23 +15,17 @@ class ApplicationController < ActionController::Base
 
 
   private
-  
-  #-> Prelang (user_login:devise)
-  def require_user_signed_in
-    unless user_signed_in?
 
-      # If the user came from a page, we can send them back.  Otherwise, send
-      # them to the root path.
-      if request.env['HTTP_REFERER']
-        fallback_redirect = :back
-      elsif defined?(root_path)
-        fallback_redirect = root_path
-      else
-        fallback_redirect = "/"
+    def require_user_signed_in
+      unless user_signed_in?
+        if request.env['HTTP_REFERER']
+          fallback_redirect = :back
+        else
+          fallback_redirect = root_path
+        end
+
+        redirect_to fallback_redirect, flash: { error: "You must be signed in to view this page." }
       end
-
-      redirect_to fallback_redirect, flash: {error: "You must be signed in to view this page."}
     end
-  end
 
 end

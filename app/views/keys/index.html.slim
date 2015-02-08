@@ -1,0 +1,12 @@
+.row
+  .col-sm-6
+    h1 Your keys
+    - @keys.each do |k|
+      p= link_to "Link", k
+      pre.public-key= k.key
+
+  .col-sm-6
+    h1 New key
+    = simple_form_for @key do |f|
+      = f.input :key
+      = f.submit "Save"

@@ -1,0 +1,14 @@
+.row
+  .col-sm-6
+    h1 Your message
+    p: textarea#message
+    p: button#encrypt Encrypt
+
+    p Using key from #{@key.user.email}:
+    p.public-key(id=@key.id data-key=@key.key)== @key.key.gsub("\n", "<br/>\n")
+    p Fingerprint:
+    p.fingerprint(id=@key.id)
+  .col-sm-6
+    h1 Encrypted
+    p: textarea#encrypted
+    p: a#send data-to=@key.user.email href="mailto:#{@key.user.email}?subject=Encrypted" Send mail

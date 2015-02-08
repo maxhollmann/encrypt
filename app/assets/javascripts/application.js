@@ -14,5 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
+//= require openpgp
+//= require openpgp.worker
 
 //= require_tree .
